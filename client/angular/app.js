@@ -10,9 +10,9 @@ var app = angular.module('app', ['ngRoute'])
             templateUrl: '../partials/signin.html',
             controller: 'loginController'
         })
-        .when('/audio', {
-            templateUrl: '../partials/audiotest.html',
-            controller: 'audioController'
+        .when('/animate', {
+            templateUrl: '../partials/animatetest.html',
+            controller: 'animateController'
         })
         .otherwise({
             redirectTo: '/'

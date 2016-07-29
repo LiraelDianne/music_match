@@ -1,6 +1,6 @@
 .wrapper {
     margin: 0 auto;
-    width: 700px;
+    width: 750px;
 }
 
 .game, .sidebar {
@@ -15,16 +15,39 @@
     border: 1px solid black;
 }
 
+.sample {
+    height: 16px;
+    width: 16px;
+    border: 1px solid black
+}
+
+.new {
+    display: block;
+    padding: 10px;
+}
+
+.score, .goal {
+    display: inline-block;
+    width: 75px;
+    padding-left: 10px;
+    vertical-align: top;
+}
+
+.score p, .goal p {
+    display: inline-block;
+    vertical-align: top;
+}
+
 .D {
-    background-color: yellow;
+    background-color: #F9FF55;
 }
 
 .E {
-    background-color: orange;
+    background-color: #FFA510;
 }
 
 .F {
-    background-color: green;
+    background-color: ForestGreen;
 }
 
 .G {
@@ -32,15 +55,23 @@
 }
 
 .A {
-    background-color: red;
+    background-color: #FF4357;
 }
 
 .B {
-    background-color: blue;
+    background-color: DarkTurquoise;
 }
 
 .square.highlighted {
     width: 41px;
     height: 41px;
     border: 5px solid gray;
+}
+
+
+.swap {
+    width: 4px;
+    height: 4px;
+    margin: 24px;
+    transition:0.1s linear all;
 }

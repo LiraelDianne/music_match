@@ -1,11 +1,24 @@
  <div class="game">
     <div class='row' ng-repeat='row in board track by $index'>
-        <div class="square {{square.note}}" ng-class="{'highlighted': square.selected, 'matched': square.matched}" ng-repeat='square in row track by $index' ng-click='select($parent.$index, $index)'></div>
+        <div class="square {{square.note}}" ng-class="{'highlighted': square.selected, 'matched': square.matched, 'swap': square.swap, 'falling':square.falling}" ng-repeat='square in row track by $index' ng-click='select($parent.$index, $index)'></div>
     </div>
 </div>
 <div class="sidebar">
-    <button ng-click='new()'>Regenerate</button>
+    <div class="new">
+        <button ng-click='new()'>Start Over</button>
+        <button ng-click='startTutorial()'>How do I Play?</button>
+    </div>
     <div class="score">
-        <p ng-repeat='note in notes'>{{note}}: {{score[note]}}</p>
+        <h3>Score</h3>
+        <div ng-repeat='note in notes'>
+            <p class="{{note}} sample"></p>
+            <p>{{note}}: {{score[note]}}</p>
+        </div>
+    </div>
+    <div class="goal">
+        <h3>Goal</h3>
+        <div ng-repeat='note in notes'>
+            <p>{{note}}: {{goal[note]}}</p>
+        </div>
     </div>
 </div>
