@@ -1,14 +1,14 @@
 app.controller('gameController', ['$scope', '$location', '$timeout', 'usersFactory', function($scope, $location, $timeout, usersFactory) {
 
     //login check
-    usersFactory.success(function(user) {
+    /* usersFactory.success(function(user) {
         if(user) {
             console.log(user._id)
             $scope.user = user
         } else {
             $location.url('/login')
         }
-    })
+    }) */
 
     //settings to play audio
     tones.attack = 10;
@@ -226,13 +226,6 @@ app.controller('gameController', ['$scope', '$location', '$timeout', 'usersFacto
         return matches
     }
 
-    var slide = function(row, col) {
-        for(var falling=row; falling>0; falling--) {
-            board[falling][col].falling = false
-            board[falling][col] = board[falling-1][col]
-        }
-    }
-
     var replace = function(matches) {
         var left = 9
         var top = 9
@@ -272,6 +265,19 @@ app.controller('gameController', ['$scope', '$location', '$timeout', 'usersFacto
         }
     }
 
+    var matchloop = function(matches) {
+        if(matches[0]) {
+            playCheck(matches, 0)
+            // replace with new random notes
+            replace(matches)
+            // check for any new matches
+            matches = checkAllMatches()
+            $timeout(matchloop, 200, true, matches)
+        } else {
+            checkScore()
+        }
+    }
+
     var swap = function(row, col) {
         //swap the two elements
         var swapnote = board[selected.row][selected.col].note
@@ -298,14 +304,7 @@ app.controller('gameController', ['$scope', '$location', '$timeout', 'usersFacto
         //unselect squares
         board[row][col].selected = false
         selected.selected = false
-        while(matches[0]) {
-            playCheck(matches, 0)
-            // replace with new random notes
-            replace(matches)
-            // check for any new matches
-            matches = checkAllMatches()
-        }
-        checkScore()
+        matchloop(matches)
     }
 
     $scope.select = function(row, col) {

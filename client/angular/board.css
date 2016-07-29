@@ -75,3 +75,11 @@
     margin: 24px;
     transition:0.1s linear all;
 }
+
+.empty {
+    background-color: blue;
+    width: 0px;
+    height: 0px;
+    margin: 26px;
+    transition:0.18s linear all;
+}
